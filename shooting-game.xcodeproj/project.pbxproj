@@ -18,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C79650809A561EEE9972F97 /* Pods-shooting-game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shooting-game.release.xcconfig"; path = "Target Support Files/Pods-shooting-game/Pods-shooting-game.release.xcconfig"; sourceTree = "<group>"; };
+		B282FAB5C1743AA624037504 /* Pods_shooting_game.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shooting_game.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7DE9CE67789B9EAA5F691E8 /* Pods-shooting-game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shooting-game.debug.xcconfig"; path = "Target Support Files/Pods-shooting-game/Pods-shooting-game.debug.xcconfig"; sourceTree = "<group>"; };
 		DA16C0022309603A0095A96A /* shooting-game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shooting-game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA16C0052309603A0095A96A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA16C0072309603A0095A96A /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -41,11 +44,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6627948FCCEDE2DD35E772BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B282FAB5C1743AA624037504 /* Pods_shooting_game.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BEAA63523B2A02F5A11C82FC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B7DE9CE67789B9EAA5F691E8 /* Pods-shooting-game.debug.xcconfig */,
+				7C79650809A561EEE9972F97 /* Pods-shooting-game.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		DA16BFF92309603A0095A96A = {
 			isa = PBXGroup;
 			children = (
 				DA16C0042309603A0095A96A /* shooting-game */,
 				DA16C0032309603A0095A96A /* Products */,
+				BEAA63523B2A02F5A11C82FC /* Pods */,
+				6627948FCCEDE2DD35E772BE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,6 +102,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA16C01A2309603C0095A96A /* Build configuration list for PBXNativeTarget "shooting-game" */;
 			buildPhases = (
+				36E0DD3BE708392DD0C73987 /* [CP] Check Pods Manifest.lock */,
 				DA16BFFE2309603A0095A96A /* Sources */,
 				DA16BFFF2309603A0095A96A /* Frameworks */,
 				DA16C0002309603A0095A96A /* Resources */,
@@ -140,6 +163,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		36E0DD3BE708392DD0C73987 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-shooting-game-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DA16BFFE2309603A0095A96A /* Sources */ = {
@@ -292,6 +340,7 @@
 		};
 		DA16C01B2309603C0095A96A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7DE9CE67789B9EAA5F691E8 /* Pods-shooting-game.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -309,6 +358,7 @@
 		};
 		DA16C01C2309603C0095A96A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C79650809A561EEE9972F97 /* Pods-shooting-game.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
