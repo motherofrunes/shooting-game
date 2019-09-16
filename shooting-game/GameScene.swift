@@ -15,6 +15,12 @@ class GameScene: SKScene {
     var accelaration: CGFloat = 0.0
 
     var timer: Timer?
+
+    let spaceshipCategory: UInt32 = 0b0001
+    let missileCategory: UInt32 = 0b0010
+    let asteroidCategory: UInt32 = 0b0100
+    let earthCategory: UInt32 = 0b1000
+
     var earth: SKSpriteNode!
     var spaceShip: SKSpriteNode!
 
@@ -24,11 +30,19 @@ class GameScene: SKScene {
         self.earth.yScale = 0.3
         self.earth.position = CGPoint(x: 0, y: -frame.height / 2)
         self.earth.zPosition = -1.0
+        self.earth.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: frame.width, height: 100))
+        self.earth.physicsBody?.categoryBitMask = earthCategory
+        self.earth.physicsBody?.contactTestBitMask = asteroidCategory
+        self.earth.physicsBody?.collisionBitMask = 0
         addChild(self.earth)
 
         self.spaceShip = SKSpriteNode(imageNamed: "spaceship")
         self.spaceShip.scale(to: CGSize(width: frame.width / 5, height: frame.width / 5))
         self.spaceShip.position = CGPoint(x: 0, y: self.earth.frame.maxY + 50)
+        self.spaceShip.physicsBody = SKPhysicsBody(circleOfRadius: self.spaceShip.frame.width * 0.1)
+        self.spaceShip.physicsBody?.categoryBitMask = spaceshipCategory
+        self.spaceShip.physicsBody?.contactTestBitMask = asteroidCategory
+        self.spaceShip.physicsBody?.collisionBitMask = 0
         addChild(self.spaceShip)
 
         self.motionManager.accelerometerUpdateInterval = 0.2
@@ -43,7 +57,7 @@ class GameScene: SKScene {
     }
 
     override func didSimulatePhysics() {
-        let nextPosition = self.spaceShip.position.x * self.accelaration * 50
+        let nextPosition = self.spaceShip.position.x + self.accelaration * 50
         if frame.width / 2 - 30 < nextPosition {
             return
         }
@@ -58,7 +72,11 @@ class GameScene: SKScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let missile: SKSpriteNode = SKSpriteNode(imageNamed: "missile")
         missile.position = CGPoint(x: self.spaceShip.position.x, y: self.spaceShip.position.y + 50)
-        NSLog("self.spaceShip.position.x=\(self.spaceShip.position.x), self.spaceShip.position.y=\(self.spaceShip.position.y)")
+        //NSLog("self.spaceShip.position.x=\(self.spaceShip.position.x), self.spaceShip.position.y=\(self.spaceShip.position.y)")
+        missile.physicsBody = SKPhysicsBody(circleOfRadius: missile.frame.height / 2)
+        missile.physicsBody?.categoryBitMask = missileCategory
+        missile.physicsBody?.contactTestBitMask = asteroidCategory
+        missile.physicsBody?.collisionBitMask = 0
         addChild(missile)
 
         let moveToTop = SKAction.moveTo(y: frame.height, duration: 0.3)
@@ -76,6 +94,10 @@ class GameScene: SKScene {
         NSLog("乱数は%f.positionXは%f.", random, positionX)
         asteroid.position = CGPoint(x: positionX, y: frame.height / 2 + asteroid.frame.height)
         asteroid.scale(to: CGSize(width: 70, height: 70))
+        asteroid.physicsBody = SKPhysicsBody(circleOfRadius: asteroid.frame.width)
+        asteroid.physicsBody?.categoryBitMask = asteroidCategory
+        asteroid.physicsBody?.contactTestBitMask = missileCategory + spaceshipCategory + earthCategory
+        asteroid.physicsBody?.collisionBitMask  = 0
         addChild(asteroid)
 
         let move = SKAction.moveTo(y: -frame.height / 2 - asteroid.frame.height, duration: 6.0)

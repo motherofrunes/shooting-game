@@ -15,6 +15,8 @@
 		DA16C0112309603A0095A96A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA16C00F2309603A0095A96A /* Main.storyboard */; };
 		DA16C0132309603C0095A96A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA16C0122309603C0095A96A /* Assets.xcassets */; };
 		DA16C0162309603C0095A96A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA16C0142309603C0095A96A /* LaunchScreen.storyboard */; };
+		DA720B71231DDB1A009502E6 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = DA720B6F231DDB1A009502E6 /* Explosion.sks */; };
+		DA720B72231DDB1A009502E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA720B70231DDB1A009502E6 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		DA16C0122309603C0095A96A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA16C0152309603C0095A96A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA16C0172309603C0095A96A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA720B6F231DDB1A009502E6 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		DA720B70231DDB1A009502E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 		DA16BFF92309603A0095A96A = {
 			isa = PBXGroup;
 			children = (
+				DA720B6F231DDB1A009502E6 /* Explosion.sks */,
+				DA720B70231DDB1A009502E6 /* Assets.xcassets */,
 				DA16C0042309603A0095A96A /* shooting-game */,
 				DA16C0032309603A0095A96A /* Products */,
 				BEAA63523B2A02F5A11C82FC /* Pods */,
@@ -158,7 +164,9 @@
 				DA16C0082309603A0095A96A /* GameScene.sks in Resources */,
 				DA16C0132309603C0095A96A /* Assets.xcassets in Resources */,
 				DA16C0162309603C0095A96A /* LaunchScreen.storyboard in Resources */,
+				DA720B72231DDB1A009502E6 /* Assets.xcassets in Resources */,
 				DA16C00A2309603A0095A96A /* Actions.sks in Resources */,
+				DA720B71231DDB1A009502E6 /* Explosion.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +352,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BQZ3B58L4B;
 				INFOPLIST_FILE = "shooting-game/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -362,6 +371,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BQZ3B58L4B;
 				INFOPLIST_FILE = "shooting-game/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
