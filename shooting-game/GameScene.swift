@@ -10,7 +10,7 @@ import CoreMotion
 import GameplayKit
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     let motionManager = CMMotionManager()
     var accelaration: CGFloat = 0.0
 
@@ -25,6 +25,9 @@ class GameScene: SKScene {
     var spaceShip: SKSpriteNode!
 
     override func didMove(to view: SKView) {
+        // 重力シミュレートは必要だが重力の影響は受けたくないため
+        physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        physicsWorld.contactDelegate = self
         self.earth = SKSpriteNode(imageNamed: "earth")
         self.earth.xScale = 1.5
         self.earth.yScale = 0.3
@@ -103,5 +106,33 @@ class GameScene: SKScene {
         let move = SKAction.moveTo(y: -frame.height / 2 - asteroid.frame.height, duration: 6.0)
         let remove = SKAction.removeFromParent()
         asteroid.run(SKAction.sequence([move, remove]))
+    }
+
+    func didBegin(_ contact: SKPhysicsContact) {
+        var asteroid: SKPhysicsBody
+        var target: SKPhysicsBody
+        
+        if contact.bodyA.categoryBitMask == asteroidCategory {
+            asteroid = contact.bodyA
+            target = contact.bodyB
+        } else {
+            asteroid = contact.bodyB
+            target = contact.bodyA
+        }
+
+        guard let asteroidNode = asteroid.node else { return }
+        guard let targetNode = target.node else { return }
+        guard let explosion = SKEmitterNode(fileNamed: "Explosion") else { return }
+        explosion.position = asteroidNode.position
+        addChild(explosion)
+
+        asteroidNode.removeFromParent()
+        if target.categoryBitMask == missileCategory {
+            targetNode.removeFromParent()
+        }
+
+        self.run(SKAction.wait(forDuration: 1.0)) {
+            explosion.removeFromParent()
+        }
     }
 }
